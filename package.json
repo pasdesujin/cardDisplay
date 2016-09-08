@@ -6,10 +6,15 @@
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
     "material-ui": "^0.15.4",
+    "mongoose": "^4.6.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-router": "^2.7.0",
+    "react-tap-event-plugin": "^1.0.0",
+    "serve-static": "^1.11.1"
   },
   "scripts": {
     "start": "react-scripts start",
