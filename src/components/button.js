@@ -5,7 +5,7 @@ import ActionCheckCircle from 'material-ui/svg-icons/action/check-circle';
 const style = {
   margin: 12,
   icon: {
-    'margin-bottom': 4
+    'marginBottom': 4
   }
 };
 

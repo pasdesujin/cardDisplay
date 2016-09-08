@@ -3,6 +3,7 @@ const Vas = require('./model');
 
 exports.getAllVas = function() {
   return Vas.find({}, {
+    '_id': 0,
     'tableName': 1,
     'headers': 1,
     'entries': 1
@@ -34,7 +35,7 @@ exports.updateTable = function(data) {
 };
 
 exports.deleteTable = function(data) {
-  return Vas.findOneAndDelete({'tableName': data.tableName}).exec()
+  return Vas.findOneAndRemove({'tableName': data.tableName}).exec()
   .then(result => {
     if (!result) {
       return 'table does not exist';

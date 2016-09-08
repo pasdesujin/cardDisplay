@@ -16,7 +16,16 @@ module.exports = Vas;
 // let test = new Vas({
 //   tableName: 'Test Table',
 //   headers: ['name', 'detail', 'price', 'url'],
-//   entries: [['1', 'detail1', '100', '*777*11#'], ['2', 'detail2', '102', '*777*22#']]
+//   entries: [{
+//     name: '1',
+//     detail: 'detail1',
+//     price: '100',
+//     url: '*777*11#'
+//   }, {
+//     name: '2',
+//     detail: 'detail2',
+//     price: '102',
+//     url: '*777*22#'}]
 // });
 
 // test.save((err, test) => {

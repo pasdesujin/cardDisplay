@@ -10,6 +10,12 @@ app.use(partials());
 app.use(bodyParser.json());
 app.use(serveStatic(__dirname + '/../build'));
 
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.get('/api/vas', (req, res) => {
   dbHelper.getAllVas()
   .then(r => res.status(200).send(r))
