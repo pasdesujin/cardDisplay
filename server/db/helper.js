@@ -32,3 +32,14 @@ exports.updateTable = function(data) {
     }
   });
 };
+
+exports.deleteTable = function(data) {
+  return Vas.findOneAndDelete({'tableName': data.tableName}).exec()
+  .then(result => {
+    if (!result) {
+      return 'table does not exist';
+    } else {
+      return result;
+    }
+  });
+};
