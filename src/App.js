@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import Button from './components/button';
+import Button from './stateless/button';
 import './App.css';
 
 injectTapEventPlugin();
