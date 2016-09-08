@@ -25,6 +25,7 @@ module.exports = Vas;
 // });
 
 // Vas.find({}, {
+//   'tableName': 1,
 //   'headers': 1,
 //   'entries': 1
 // }).exec().then(r => console.log(r[0]));
