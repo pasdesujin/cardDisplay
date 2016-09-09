@@ -44,3 +44,5 @@ exports.deleteTable = function(data) {
     }
   });
 };
+
+// exports.deleteTable({tableName: 'Test Table'}).then(r => console.log(r));

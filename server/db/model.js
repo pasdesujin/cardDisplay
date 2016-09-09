@@ -20,12 +20,15 @@ module.exports = Vas;
 //     name: '1',
 //     detail: 'detail1',
 //     price: '100',
-//     url: '*777*11#'
+//     url: '*777*11#',
+//     _button: 'url'
 //   }, {
 //     name: '2',
 //     detail: 'detail2',
 //     price: '102',
-//     url: '*777*22#'}]
+//     url: '*777*22#',
+//     _button: 'url'
+//   }]
 // });
 
 // test.save((err, test) => {

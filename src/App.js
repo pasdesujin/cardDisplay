@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-          <Button url="tel:*777*9030*992785#" />
+          <Button url="*129#" />
           <Main />
         </div>
       </MuiThemeProvider>

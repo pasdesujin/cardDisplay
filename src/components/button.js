@@ -10,9 +10,9 @@ const style = {
 };
 
 const RaisedButtonExampleIcon = (props) => (
-  <div>
+  <div className="subscribe-button">
     <RaisedButton
-      href={props.url}
+      href={`tel:${props.url}`}
       label="สมัคร"
       labelPosition="before"
       labelColor="#fff"

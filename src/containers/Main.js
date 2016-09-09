@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Table from '../components/Table';
+import TableContainer from '../components/Table';
 import 'whatwg-fetch';
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      table: [1, 2, 3]
+      table: []
     };
   }
 
@@ -28,7 +28,7 @@ class Main extends Component {
     return (
       <div>
         {this.state.table.map((table, i) =>
-          <Table key={i} data={table} />
+          <TableContainer key={i} data={table} />
         )}
       </div>
     );
