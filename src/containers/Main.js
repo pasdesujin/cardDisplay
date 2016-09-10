@@ -11,7 +11,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8128/api/vas')
+    fetch('/api/vas')
     .then(res => {
       return res.text();
     }).then(body => {

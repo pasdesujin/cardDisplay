@@ -21,7 +21,7 @@ exports.updateCard = function(data) {
   return Vas.findOneAndUpdate({'_id': data._id}, data).exec()
   .then(result => {
     if (!result) {
-      return 'card does not exist';
+      return exports.addCard(data);
     } else {
       return result;
     }

@@ -10,8 +10,8 @@ class Edit extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch('http://localhost:8128/api/vas')
+  loadData () {
+    fetch('/api/vas')
     .then(res => {
       return res.text();
     }).then(body => {
@@ -24,12 +24,16 @@ class Edit extends Component {
     });
   }
 
+  componentDidMount() {
+    this.loadData();
+  }
+
   render() {
     return (
       <div>
         {JSON.stringify(this.state)}
         {this.state.cards.map((card, i) =>
-          <EditCard key={i} data={card} />
+          <EditCard key={i} data={card} reload={this.loadData.bind(this)}/>
         )}
       </div>
     );

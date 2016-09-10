@@ -3,6 +3,7 @@ const serveStatic = require('serve-static');
 const partials = require('express-partials');
 const bodyParser = require('body-parser');
 const dbHelper = require('./db/helper');
+const path = require('path');
 
 const app = express();
 
@@ -23,14 +24,8 @@ app.get('/api/vas', (req, res) => {
 });
 
 app.post('/api/vas', (req, res) => {
-  dbHelper.addCard(req.body)
-  .then(r => res.status(201).send(r))
-  .catch(err => res.status(404).send(err));
-});
-
-app.put('/api/vas', (req, res) => {
   dbHelper.updateCard(req.body)
-  .then(r => res.status(200).send(r))
+  .then(r => res.status(201).send(r))
   .catch(err => res.status(404).send(err));
 });
 
@@ -38,6 +33,10 @@ app.delete('/api/vas', (req, res) => {
   dbHelper.deleteCard(req.body)
   .then(r => res.status(200).send(r))
   .catch(err => res.status(404).send(err));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 module.exports = app;
