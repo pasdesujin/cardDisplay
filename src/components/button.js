@@ -9,12 +9,12 @@ const style = {
   }
 };
 
-const RaisedButtonExampleIcon = (props) => (
+const Button = (props) => (
   <div className="subscribe-button">
     <RaisedButton
       href={`tel:${props.url}`}
-      label="สมัคร"
-      labelPosition="before"
+      label={props.label}
+      labelPosition="after"
       labelColor="#fff"
       icon={<ActionCheckCircle color="#fff" style={style.icon}/>}
       backgroundColor="#a4c639"
@@ -23,4 +23,4 @@ const RaisedButtonExampleIcon = (props) => (
   </div>
 );
 
-export default RaisedButtonExampleIcon;
+export default Button;

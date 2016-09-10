@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import VasCard from '../components/Card';
+import EditCard from '../components/EditCard';
 import 'whatwg-fetch';
 
-class Main extends Component {
+class Edit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,11 +29,11 @@ class Main extends Component {
       <div>
         {JSON.stringify(this.state)}
         {this.state.cards.map((card, i) =>
-          <VasCard key={i} data={card} />
+          <EditCard key={i} data={card} />
         )}
       </div>
     );
   }
 }
 
-export default Main;
+export default Edit;

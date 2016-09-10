@@ -6,6 +6,11 @@
   padding: 10px 20px;
 }
 
+.card-container {
+  text-align: left;
+  padding: 10px 20px;
+}
+
 .subscribe-button {
   display: inline-block;
 }

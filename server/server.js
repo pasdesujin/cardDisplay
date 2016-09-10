@@ -17,25 +17,25 @@ app.all('/*', function(req, res, next) {
 });
 
 app.get('/api/vas', (req, res) => {
-  dbHelper.getAllVas()
+  dbHelper.getAllCards()
   .then(r => res.status(200).send(r))
   .catch(err => res.status(404).send(err));
 });
 
 app.post('/api/vas', (req, res) => {
-  dbHelper.addTable(req.body)
+  dbHelper.addCard(req.body)
   .then(r => res.status(201).send(r))
   .catch(err => res.status(404).send(err));
 });
 
 app.put('/api/vas', (req, res) => {
-  dbHelper.updateTable(req.body)
+  dbHelper.updateCard(req.body)
   .then(r => res.status(200).send(r))
   .catch(err => res.status(404).send(err));
 });
 
 app.delete('/api/vas', (req, res) => {
-  dbHelper.deleteTable(req.body)
+  dbHelper.deleteCard(req.body)
   .then(r => res.status(200).send(r))
   .catch(err => res.status(404).send(err));
 });
