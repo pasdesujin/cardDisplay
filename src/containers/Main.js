@@ -15,7 +15,6 @@ class Main extends Component {
     .then(res => {
       return res.text();
     }).then(body => {
-      console.log(body);
       this.setState({
         cards: JSON.parse(body).sort((a, b) => a.sort > b.sort)
       });
@@ -27,7 +26,6 @@ class Main extends Component {
   render() {
     return (
       <div>
-        {JSON.stringify(this.state)}
         {this.state.cards.map((card, i) =>
           <VasCard key={i} data={card} />
         )}

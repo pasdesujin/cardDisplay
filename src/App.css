@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  padding-bottom: 10px;
+}
+
+.title {
+  margin-bottom: 10px;
 }
 
 .table-container {
@@ -13,4 +18,21 @@
 
 .subscribe-button {
   display: inline-block;
+}
+
+.reorder-buttons {
+  display: inline-block;
+  float: right;
+}
+
+.reorder-buttons button {
+  min-width: 30px !important;
+}
+
+.save-cancel-buttons {
+  display: inline-block;
+}
+
+.save-cancel-buttons button {
+  min-width: 70px !important;
 }

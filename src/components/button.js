@@ -1,6 +1,5 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import ActionCheckCircle from 'material-ui/svg-icons/action/check-circle';
 
 const style = {
   margin: 12,
@@ -16,8 +15,7 @@ const Button = (props) => (
       label={props.label}
       labelPosition="after"
       labelColor="#fff"
-      icon={<ActionCheckCircle color="#fff" style={style.icon}/>}
-      backgroundColor="#a4c639"
+      backgroundColor="#9ACF56"
       style={style}
     />
   </div>

@@ -10,7 +10,6 @@ const VasCard = (props) => (
         subtitle={props.data.subtitle}
       />
       <CardText>
-         {JSON.stringify(props)}
          {props.data.details}
       </CardText>
       <CardActions>

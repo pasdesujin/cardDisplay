@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
-import Button from './Button';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import NavigationArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
+import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 import 'whatwg-fetch';
+
+const style = {
+  margin: 3
+};
 
 class EditCard extends Component {
   constructor(props) {
@@ -15,14 +20,27 @@ class EditCard extends Component {
     this.reload = props.reload;
   }
 
-  save() {
-    fetch('/api/vas', {
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      data: newProps.data,
+      changed: false
+    });
+  }
+
+  callFetch(data) {
+    return fetch('/api/vas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.data)
-    }).then(res => {
+      body: JSON.stringify(data)
+    });
+  }
+
+
+  save() {
+    this.callFetch(this.state.data)
+    .then(res => {
       if (res.status === 201) {
         this.reload();
         this.setState({changed: false});
@@ -53,6 +71,40 @@ class EditCard extends Component {
     });
   }
 
+  moveUp(index) {
+    if (index > 0) {
+      const a = this.props.allCards.filter(card => card.sort === index)[0];
+      const b = this.props.allCards.filter(card => card.sort === index-1)[0];
+      this.callFetch(Object.assign({}, a, {sort: index-1}))
+      .then(res => {
+        if (res.status === 201) {
+          return this.callFetch(Object.assign({}, b, {sort: index}));
+        }
+      }).then(res => {
+        if (res.status === 201) {
+          this.reload();
+        }
+      });
+    }
+  }
+
+  moveDown(index) {
+    if (index < this.props.allCards.length - 1) {
+      const a = this.props.allCards.filter(card => card.sort === index)[0];
+      const b = this.props.allCards.filter(card => card.sort === index+1)[0];
+      this.callFetch(Object.assign({}, a, {sort: index+1}))
+      .then(res => {
+        if (res.status === 201) {
+          return this.callFetch(Object.assign({}, b, {sort: index}));
+        }
+      }).then(res => {
+        if (res.status === 201) {
+          this.reload();
+        }
+      });
+    }
+  }
+
   render() {
     return (
       <div className="card-container">
@@ -62,7 +114,7 @@ class EditCard extends Component {
               <TextField
                 floatingLabelText="Title"
                 multiLine={true}
-                defaultValue={this.props.data.title}
+                value={this.state.data.title}
                 data-type="title"
                 onChange={this.handleChange.bind(this)}
               />
@@ -72,14 +124,14 @@ class EditCard extends Component {
                 <TextField
                   floatingLabelText="Subtitle"
                   multiLine={true}
-                  defaultValue={this.props.data.subtitle}
+                  value={this.state.data.subtitle}
                   data-type="subtitle"
                   onChange={this.handleChange.bind(this)}
                 /><br />
                 <TextField
                   floatingLabelText="URL"
                   multiLine={true}
-                  defaultValue={this.props.data.url}
+                  value={this.state.data.url}
                   data-type="url"
                   onChange={this.handleChange.bind(this)}
                 />
@@ -91,7 +143,7 @@ class EditCard extends Component {
                 floatingLabelText="Details"
                 multiLine={true}
                 fullWidth={true}
-                defaultValue={this.props.data.details}
+                value={this.state.data.details}
                 data-type="details"
                 onChange={this.handleChange.bind(this)}
               />}
@@ -103,16 +155,31 @@ class EditCard extends Component {
                 onClick={this.save.bind(this)}
                 backgroundColor={this.state.changed ? '#FFE082' : ''}
                 hoverColor={this.state.changed ? '#C5E1A5' : ''}
+                style={style}
               />
               <FlatButton
                 label="Delete"
                 onClick={this.delete.bind(this)}
                 hoverColor='#EF9A9A'
+                style={style}
+              />
+            </div>
+            <div className="reorder-buttons">
+              <FlatButton
+                data-sort={this.props.data.sort}
+                icon={<NavigationArrowUpward color="#212121"/>}
+                style={style}
+                onClick={() => this.moveUp(this.props.data.sort)}
+              />
+              <FlatButton
+                data-sort={this.props.data.sort}
+                icon={<NavigationArrowDownward color="#212121"/>}
+                style={style}
+                onClick={() => this.moveDown(this.props.data.sort)}
               />
             </div>
           </CardActions>
         </Card>
-        {JSON.stringify(this.state)}
       </div>
     );
   }
