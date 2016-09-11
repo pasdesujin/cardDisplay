@@ -43,9 +43,15 @@
   margin: -3px 0 11px !important;
 }
 
-.auth0-lock.auth0-lock .auth0-lock-header-bg .auth0-lock-header-bg-blur {
-  -webkit-filter: blur(10px) !important;
-  -ms-filter: blur(10px) !important;
-  filter: blur(10px) !important;
-  background-size: 300px !important;
+.auth0-lock.auth0-lock .auth0-lock-header-bg .auth0-lock-header-bg-blur {display: inherit !important;
+  -webkit-filter: blur(8px) !important;
+  -ms-filter: blur(8px) !important;
+  filter: blur(8px) !important;
+  background-size: 333px !important;
+  background-position: 100% 50% !important;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-tabs-container {
+  position: relative !important;
+  margin-bottom: 20px !important;
 }
