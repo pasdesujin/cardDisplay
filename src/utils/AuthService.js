@@ -1,4 +1,5 @@
 import Auth0Lock from 'auth0-lock';
+import { isTokenExpired } from './jwtHelper';
 import logo from '../logo.svg';
 
 const options = {
@@ -6,8 +7,7 @@ const options = {
   theme: {
     logo: logo,
     primaryColor: '#A4D560'
-  },
-  autoclose: true
+  }
 };
 
 export default class AuthService {
@@ -28,7 +28,8 @@ export default class AuthService {
   }
 
   loggedIn() {
-    return !!this.getToken();
+    const token = this.getToken();
+    return !!token && !isTokenExpired(token);
   }
 
   setToken(idToken) {

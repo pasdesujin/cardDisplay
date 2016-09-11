@@ -13,7 +13,7 @@ class Edit extends Component {
   }
 
   loadData() {
-    fetch('/api/vas')
+    fetch('http://localhost:8128/api/vas')
     .then(res => {
       return res.text();
     }).then(body => {
@@ -30,7 +30,7 @@ class Edit extends Component {
   }
 
   addCard() {
-    fetch('/api/vas', {
+    fetch('http://localhost:8128/api/vas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

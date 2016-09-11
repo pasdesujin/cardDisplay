@@ -28,7 +28,7 @@ class EditCard extends Component {
   }
 
   callFetch(data) {
-    return fetch('/api/vas', {
+    return fetch('http://localhost:8128/api/vas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ class EditCard extends Component {
   }
 
   delete() {
-    fetch('/api/vas', {
+    fetch('http://localhost:8128/api/vas', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

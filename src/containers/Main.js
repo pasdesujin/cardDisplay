@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import VasCard from '../components/Card';
+import TitleBar from '../components/TitleBar';
 import 'whatwg-fetch';
 
 class Main extends Component {
@@ -11,7 +12,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/vas')
+    fetch('http://localhost:8128/api/vas')
     .then(res => {
       return res.text();
     }).then(body => {
@@ -26,6 +27,7 @@ class Main extends Component {
   render() {
     return (
       <div>
+        <TitleBar />
         {this.state.cards.map((card, i) =>
           <VasCard key={i} data={card} />
         )}

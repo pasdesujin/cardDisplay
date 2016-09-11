@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TitleBar from './components/TitleBar';
 import Routes from './Routes';
 import './App.css';
 
@@ -12,7 +11,6 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-          <TitleBar />
           <Routes />
         </div>
       </MuiThemeProvider>
