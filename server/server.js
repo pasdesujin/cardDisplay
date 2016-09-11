@@ -4,8 +4,14 @@ const partials = require('express-partials');
 const bodyParser = require('body-parser');
 const dbHelper = require('./db/helper');
 const path = require('path');
+const jwt = require('express-jwt');
 
 const app = express();
+
+const jwtCheck = jwt({
+  secret: new Buffer('***REMOVED***', 'base64'),
+  audience: '***REMOVED***'
+});
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -22,16 +28,24 @@ app.get('/api/vas', (req, res) => {
   .catch(err => res.status(404).send(err));
 });
 
-app.post('/api/vas', (req, res) => {
-  dbHelper.updateCard(req.body)
-  .then(r => res.status(201).send(r))
-  .catch(err => res.status(404).send(err));
+app.post('/api/vas',jwtCheck, (req, res) => {
+  if (req.user.app_metadata.roles.indexOf('admin') > -1) {
+    dbHelper.updateCard(req.body)
+    .then(r => res.status(201).send(r))
+    .catch(err => res.status(404).send(err));
+  } else {
+    res.status(404).send('Unauthorised');
+  }
 });
 
-app.delete('/api/vas', (req, res) => {
-  dbHelper.deleteCard(req.body)
-  .then(r => res.status(200).send(r))
-  .catch(err => res.status(404).send(err));
+app.delete('/api/vas',jwtCheck, (req, res) => {
+  if (req.user.app_metadata.roles.indexOf('admin') > -1) {
+    dbHelper.deleteCard(req.body)
+    .then(r => res.status(200).send(r))
+    .catch(err => res.status(404).send(err));
+  } else {
+    res.status(404).send('Unauthorised');
+  }
 });
 
 app.get('*', (req, res) => {

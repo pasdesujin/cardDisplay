@@ -33,12 +33,22 @@ class Edit extends Component {
     fetch('http://localhost:8128/api/vas', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem('id_token')
       },
-      body: JSON.stringify({sort: this.state.cards.length})
+      body: JSON.stringify({
+        title: '',
+        subtitle: '',
+        url: '',
+        details: '',
+        sort: this.state.cards.length
+      })
     }).then(r => {
       if (r.status === 201) {
         this.loadData();
+      } else {
+        r.text().then(res => window.alert(res));
       }
     });
   }

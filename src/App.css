@@ -38,15 +38,14 @@
 }
 
 .auth0-lock.auth0-lock .auth0-lock-header-logo {
-  height: 105px;
-  width: auto;
-  display: inline-block;
-  margin: -3px 0 11px;
+  height: 105px !important;
+  width: auto !important;
+  margin: -3px 0 11px !important;
 }
 
 .auth0-lock.auth0-lock .auth0-lock-header-bg .auth0-lock-header-bg-blur {
-  -webkit-filter: blur(10px);
-  -ms-filter: blur(10px);
-  filter: blur(10px);
-  background-size: 300px;
+  -webkit-filter: blur(10px) !important;
+  -ms-filter: blur(10px) !important;
+  filter: blur(10px) !important;
+  background-size: 300px !important;
 }

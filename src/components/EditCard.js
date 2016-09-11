@@ -27,11 +27,13 @@ class EditCard extends Component {
     });
   }
 
-  callFetch(data) {
+  callFetch(method, data) {
     return fetch('http://localhost:8128/api/vas', {
-      method: 'POST',
+      method: method,
       headers: {
-        'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + localStorage.getItem('id_token')
       },
       body: JSON.stringify(data)
     });
@@ -39,25 +41,24 @@ class EditCard extends Component {
 
 
   save() {
-    this.callFetch(this.state.data)
+    this.callFetch('POST', this.state.data)
     .then(res => {
       if (res.status === 201) {
         this.reload();
         this.setState({changed: false});
+      } else {
+        res.text().then(r => window.alert(r));
       }
     });
   }
 
   delete() {
-    fetch('http://localhost:8128/api/vas', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state.data)
-    }).then(res => {
+    this.callFetch('DELETE', this.state.data)
+    .then(res => {
       if (res.status === 200) {
         this.reload();
+      } else {
+        res.text().then(r => window.alert(r));
       }
     });
   }
@@ -71,38 +72,33 @@ class EditCard extends Component {
     });
   }
 
-  moveUp(index) {
-    if (index > 0) {
+  swap(index, offset) {
+    if (offset > 0 ? (index < this.props.allCards.length - offset) : (index + offset >= 0) ) {
       const a = this.props.allCards.filter(card => card.sort === index)[0];
-      const b = this.props.allCards.filter(card => card.sort === index-1)[0];
-      this.callFetch(Object.assign({}, a, {sort: index-1}))
+      const b = this.props.allCards.filter(card => card.sort === index+offset)[0];
+      this.callFetch('POST', Object.assign({}, a, {sort: index+offset}))
       .then(res => {
         if (res.status === 201) {
-          return this.callFetch(Object.assign({}, b, {sort: index}));
+          return this.callFetch('POST', Object.assign({}, b, {sort: index}));
+        } else {
+          return res.text();
         }
       }).then(res => {
         if (res.status === 201) {
           this.reload();
+        } else {
+          window.alert(res);
         }
       });
     }
   }
 
+  moveUp(index) {
+    this.swap(index, -1);
+  }
+
   moveDown(index) {
-    if (index < this.props.allCards.length - 1) {
-      const a = this.props.allCards.filter(card => card.sort === index)[0];
-      const b = this.props.allCards.filter(card => card.sort === index+1)[0];
-      this.callFetch(Object.assign({}, a, {sort: index+1}))
-      .then(res => {
-        if (res.status === 201) {
-          return this.callFetch(Object.assign({}, b, {sort: index}));
-        }
-      }).then(res => {
-        if (res.status === 201) {
-          this.reload();
-        }
-      });
-    }
+    this.swap(index, 1);
   }
 
   render() {

@@ -4,6 +4,11 @@ import logo from '../logo.svg';
 
 const options = {
   container: 'login-container',
+  auth: {
+    params: {
+      scope: 'openid email app_metadata'
+    }
+  },
   theme: {
     logo: logo,
     primaryColor: '#A4D560'
