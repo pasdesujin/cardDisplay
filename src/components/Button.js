@@ -11,7 +11,7 @@ const style = {
 const Button = (props) => (
   <div className="subscribe-button">
     <RaisedButton
-      href={`tel:${props.url}`}
+      href={`tel:${props.url.replace(/#/g, '%23')}`}
       label={props.label}
       labelPosition="after"
       labelColor="#fff"
