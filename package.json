@@ -1,9 +1,10 @@
 {
-  "name": "phone",
+  "name": "airtouch",
   "version": "0.0.1",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.4.1"
+  "engines": {
+    "node": "6.3.1",
+    "npm": "3.10.5"
   },
   "dependencies": {
     "auth0-lock": "^10.2.2",
@@ -19,10 +20,12 @@
     "react-dom": "^15.3.1",
     "react-router": "^2.7.0",
     "react-tap-event-plugin": "^1.0.0",
+    "react-scripts": "0.4.1",
     "serve-static": "^1.11.1",
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
+    "postinstall": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
