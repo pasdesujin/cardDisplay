@@ -3,9 +3,8 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TitleBar from './components/TitleBar';
+import Routes from './Routes';
 import './App.css';
-import Main from './containers/Main';
-import Edit from './containers/Edit';
 
 injectTapEventPlugin();
 class App extends Component {
@@ -14,10 +13,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <TitleBar />
-          <Router history={browserHistory}>
-            <Route path="/" component={Main} />
-            <Route path="edit" component={Edit} />
-          </Router>
+          <Routes />
         </div>
       </MuiThemeProvider>
     );
