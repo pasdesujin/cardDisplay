@@ -28,7 +28,7 @@ class EditCard extends Component {
   }
 
   callFetch(method, data) {
-    return fetch('http://localhost:8128/api/vas', {
+    return fetch('/api/vas', {
       method: method,
       headers: {
         'Accept': 'application/json',
