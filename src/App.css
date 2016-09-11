@@ -36,3 +36,17 @@
 .save-cancel-buttons button {
   min-width: 70px !important;
 }
+
+.auth0-lock.auth0-lock .auth0-lock-header-logo {
+  height: 105px;
+  width: auto;
+  display: inline-block;
+  margin: -3px 0 11px;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-header-bg .auth0-lock-header-bg-blur {
+  -webkit-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  background-size: 300px;
+}

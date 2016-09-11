@@ -7,6 +7,9 @@ const options = {
   theme: {
     logo: logo,
     primaryColor: '#A4D560'
+  },
+  languageDictionary: {
+    title: ''
   }
 };
 
