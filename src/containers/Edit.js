@@ -29,21 +29,25 @@ class Edit extends Component {
     this.loadData();
   }
 
-  addCard() {
-    fetch('/api/vas', {
-      method: 'POST',
+  callFetch(method, data) {
+    return fetch('/api/vas', {
+      method: method,
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'authorization': 'Bearer ' + localStorage.getItem('id_token')
       },
-      body: JSON.stringify({
-        title: '',
-        subtitle: '',
-        url: '',
-        details: '',
-        sort: this.state.cards.length
-      })
+      body: JSON.stringify(data)
+    });
+  }
+
+  addCard() {
+    this.callFetch('POST', {
+      title: '',
+      subtitle: '',
+      url: '',
+      details: '',
+      sort: this.state.cards.length
     }).then(r => {
       if (r.status === 201) {
         this.loadData();
@@ -63,6 +67,7 @@ class Edit extends Component {
             data={card}
             reload={this.loadData.bind(this)}
             allCards={this.state.cards}
+            callFetch={this.callFetch}
           />);
         })}
         <FlatButton

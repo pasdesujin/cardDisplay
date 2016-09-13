@@ -3,7 +3,6 @@ import AuthService from '../utils/AuthService';
 import Login from '../components/Login';
 import Edit from './Edit';
 import TitleBar from '../components/TitleBar';
-import 'whatwg-fetch';
 
 class EditContainer extends Component {
   constructor() {

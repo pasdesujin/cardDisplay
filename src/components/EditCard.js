@@ -27,21 +27,8 @@ class EditCard extends Component {
     });
   }
 
-  callFetch(method, data) {
-    return fetch('/api/vas', {
-      method: method,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'authorization': 'Bearer ' + localStorage.getItem('id_token')
-      },
-      body: JSON.stringify(data)
-    });
-  }
-
-
   save() {
-    this.callFetch('POST', this.state.data)
+    this.props.callFetch('POST', this.state.data)
     .then(res => {
       if (res.status === 201) {
         this.reload();
@@ -53,7 +40,7 @@ class EditCard extends Component {
   }
 
   delete() {
-    this.callFetch('DELETE', this.state.data)
+    this.props.callFetch('DELETE', this.state.data)
     .then(res => {
       if (res.status === 200) {
         this.reload();
@@ -76,10 +63,10 @@ class EditCard extends Component {
     if (offset > 0 ? (index < this.props.allCards.length - offset) : (index + offset >= 0) ) {
       const a = this.props.allCards.filter(card => card.sort === index)[0];
       const b = this.props.allCards.filter(card => card.sort === index+offset)[0];
-      this.callFetch('POST', Object.assign({}, a, {sort: index+offset}))
+      this.props.callFetch('POST', Object.assign({}, a, {sort: index+offset}))
       .then(res => {
         if (res.status === 201) {
-          return this.callFetch('POST', Object.assign({}, b, {sort: index}));
+          return this.props.callFetch('POST', Object.assign({}, b, {sort: index}));
         } else {
           return res.text();
         }
