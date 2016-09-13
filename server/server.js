@@ -8,9 +8,12 @@ const jwt = require('express-jwt');
 
 const app = express();
 
+const secret = process.env.SECRET || require('../auth0Config').SECRET;
+const clientID = process.env.REACT_APP_CLIENT_ID || require('../auth0Config').CLIENT_ID;
+
 const jwtCheck = jwt({
-  secret: new Buffer('***REMOVED***', 'base64'),
-  audience: '***REMOVED***'
+  secret: new Buffer(secret, 'base64'),
+  audience: clientID
 });
 
 app.use(function(req, res, next) {

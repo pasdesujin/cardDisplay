@@ -4,6 +4,11 @@ import Login from '../components/Login';
 import Edit from './Edit';
 import TitleBar from '../components/TitleBar';
 
+const client_id = process.env.REACT_APP_CLIENT_ID ?
+  process.env.REACT_APP_CLIENT_ID : require('../../auth0Config').CLIENT_ID;
+const domain = process.env.REACT_APP_DOMAIN ?
+  process.env.REACT_APP_DOMAIN : require('../../auth0Config').DOMAIN;
+
 class EditContainer extends Component {
   constructor() {
     super();
@@ -15,8 +20,8 @@ class EditContainer extends Component {
 
   makeLock() {
     this.auth = new AuthService(
-      '***REMOVED***',
-      'peranatd.auth0.com',
+      client_id,
+      domain,
       () => {this.setState({loggedIn: this.auth.loggedIn()});}
     );
   }
