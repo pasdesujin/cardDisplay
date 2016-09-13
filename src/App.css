@@ -38,9 +38,9 @@
 }
 
 .auth0-lock.auth0-lock .auth0-lock-header-logo {
-  height: 105px !important;
+  height: 123px !important;
   width: auto !important;
-  margin: -3px 0 11px !important;
+  margin: -13px 0 11px !important;
 }
 
 .auth0-lock.auth0-lock .auth0-lock-header-bg .auth0-lock-header-bg-blur {display: inherit !important;
